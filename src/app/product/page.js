@@ -44,36 +44,6 @@ export default function ProductPage() {
     }
   }
 
-  if (loading) {
-    return (
-      <>
-        <NavigationBar onCartClick={() => setCartOpen(true)}/>
-        <main>
-          <div className="grid grid-cols-4 gap-6 mr-8 ml-8 mt-8">
-            <SearchBar />
-            <SortBy />
-          </div>
-          <div className="flex justify-center items-center h-64">
-            <p className="text-lg">Loading products...</p>
-          </div>
-        </main>
-      </>
-    );
-  }
-
-  if (error) {
-    return (
-      <>
-        <NavigationBar onCartClick={() => setCartOpen(true)}/>
-        <main>
-          <div className="flex justify-center items-center h-64">
-            <p className="text-lg text-red-600">{error}</p>
-          </div>
-        </main>
-      </>
-    );
-  }
-
   return (
     <>
       <NavigationBar onCartClick={() => setCartOpen(true)}/>
