@@ -3,7 +3,11 @@ import Link from "next/link";
 export default function NavigationBar({ onCartClick }) {
   return (
     <header className="flex justify-between border p-4">
-      <h1>PlushieStore</h1>
+      <h1>
+        <Link href="/product">
+          PlushieStore
+        </Link>
+      </h1>
       <ul className="flex gap-10">
         <li>
           <Link className="hover:underline" href="#">

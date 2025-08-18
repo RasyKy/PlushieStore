@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
-import Link from "next/link";
 import NavigationBar from "@/components/navigationbar";
 import SearchBar from "@/components/searchbar";
 import SortBy from "@/components/sortby";
@@ -14,18 +13,12 @@ export default function ProductPage() {
   const [error, setError] = useState(null);
   const [cartOpen, setCartOpen] = useState(false);
 
-  useEffect(() => {
-    console.log("URL:", process.env.NEXT_PUBLIC_SUPABASE_URL);
-    console.log(
-      "Key:",
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.substring(0, 20) + "..."
-    );
-    fetchProducts();
-  }, []);
+  useEffect(() => { fetchProducts(); }, []);
 
   async function fetchProducts() {
     try {
       setLoading(true);
+      
       const { data, error } = await supabase
         .from("products")
         .select("*")
@@ -42,36 +35,6 @@ export default function ProductPage() {
     } finally {
       setLoading(false);
     }
-  }
-
-  if (loading) {
-    return (
-      <>
-        <NavigationBar onCartClick={() => setCartOpen(true)}/>
-        <main>
-          <div className="grid grid-cols-4 gap-6 mr-8 ml-8 mt-8">
-            <SearchBar />
-            <SortBy />
-          </div>
-          <div className="flex justify-center items-center h-64">
-            <p className="text-lg">Loading products...</p>
-          </div>
-        </main>
-      </>
-    );
-  }
-
-  if (error) {
-    return (
-      <>
-        <NavigationBar onCartClick={() => setCartOpen(true)}/>
-        <main>
-          <div className="flex justify-center items-center h-64">
-            <p className="text-lg text-red-600">{error}</p>
-          </div>
-        </main>
-      </>
-    );
   }
 
   return (

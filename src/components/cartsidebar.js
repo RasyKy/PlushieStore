@@ -3,13 +3,11 @@ export default function CartSidebar({ isOpen, onClose }) {
 
   return (
     <>
-      {/* Overlay */}
       <div
         className="fixed inset-0 bg-black opacity-50 z-40"
         onClick={onClose}
       />
 
-      {/* Sidebar */}
       <div className="fixed top-0 right-0 h-full w-80 bg-white shadow-lg z-50 flex flex-col">
         {/* Header */}
         <div className="p-4 flex justify-between items-center border-b flex-shrink-0">
@@ -27,7 +25,6 @@ export default function CartSidebar({ isOpen, onClose }) {
           </div>
         </div>
 
-        {/* Checkout Footer */}
         <div className="border-t p-4 flex-shrink-0 bg-gray-50">
           <div className="mb-3">
             <div className="flex justify-between mb-2">
@@ -35,7 +32,7 @@ export default function CartSidebar({ isOpen, onClose }) {
               <span className="font-bold">$19.99</span>
             </div>
           </div>
-          <button className="w-full bg-black text-white py-3 rounded-lg hover:bg-blue-700 transition-colors">
+          <button className="w-full bg-black text-white py-3 rounded-lg">
             Checkout
           </button>
           <span className="font-light text-gray-700 text-sm items-center">

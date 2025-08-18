@@ -7,10 +7,10 @@ export default function Home() {
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
         <ul className="flex space-x-20 text-2xl list-none">
           <li><Link className="hover:underline" href="/register">Register</Link></li>
-          <li><Link className="hover:underline" href="/admin">Account</Link></li>
+          <li><Link className="hover:underline" href="/account">Account</Link></li>
           <li><Link className="hover:underline" href="/product">ProductPage</Link></li>
           <li><Link className="hover:underline" href="/checkout">Checkout</Link></li>
-          <li><Link className="hover:underline" href="/admin">Admin</Link></li>
+          <li><Link className="hover:underline" href="/admin">AdminLogin</Link></li>
           <li><Link className="hover:underline" href="/admin/product">AdminProductPage</Link></li>
         </ul>
       </main>
