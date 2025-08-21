@@ -1,28 +1,32 @@
-import InputBox from "@/components/inputbox";
+"use client"
 
-export default function CheckoutPage() {
+import { useState } from "react"
+import LoginForm from "@/components/auth/login-form"
+import SignupForm from "@/components/auth/signup-form"
+
+export default function HomePage() {
+  const [showLogin, setShowLogin] = useState(true)
+
   return (
-    <>
-      <header className="bg-gray-100">
-        <h1 className="text-center">PlushieStore</h1>
-      </header>
-      <main className="bg-gray-100 min-h-screen">
-        <div className="bg-white border flex flex-col">
-          <p>Create Accoun</p>
-          <p>
-            Already have an account?{" "}
-            <span className="text-bold underline">Log in</span>
-          </p>
-
-          <InputBox displayText="Email" />
-          <InputBox displayText="Password" />
-          <InputBox displayText="Confirm Password" />
-
-          <button className="text-white bg-blue-600 p-4 rounded">Create Account</button>
-        <p> Or continue with</p>
-        <button className="border p-4">Google</button>
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
+      <div className="mb-8">
+        <div className="flex items-center space-x-2">
+          <div className="text-2xl font-bold text-pink-600">Plushie</div>
+          <div className="text-2xl font-bold text-gray-800">Store</div>
         </div>
-      </main>
-    </>
-  );
+      </div>
+
+      <div className="w-full max-w-md">
+        {showLogin ? (
+          <LoginForm onToggleForm={() => setShowLogin(false)} />
+        ) : (
+          <SignupForm onToggleForm={() => setShowLogin(true)} />
+        )}
+      </div>
+
+      <div className="mt-8 text-center text-sm text-gray-500">
+        <p>© 2025 Plushie Store.</p>
+      </div>
+    </div>
+  )
 }

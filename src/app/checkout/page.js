@@ -4,8 +4,11 @@ import Link from "next/link";
 export default function CheckoutPage() {
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="text-center border-b p-5">
-        <Link href="/">PlushieStore</Link>
+      <header className="text-center font-bold border-b p-5">
+        <Link href="/product" className="group">
+          <span className="text-pink-600">Plushie</span>
+          <span className="text-gray-800">Store</span>
+        </Link>
       </header>
 
       <main className="flex flex-1">
@@ -61,7 +64,7 @@ export default function CheckoutPage() {
         <div className="w-1/2 p-6 pl-20 pr-20 flex flex-col">
           <div className="flex justify-between">
             <div className="flex">
-              <img src="https://via.placeholder.com/150" className="mr-5"/>
+              <img src="https://via.placeholder.com/150" className="mr-5" />
               <p>Octupus</p>
             </div>
 

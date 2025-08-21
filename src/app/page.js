@@ -10,7 +10,7 @@ export default function Home() {
           <li><Link className="hover:underline" href="/account">Account</Link></li>
           <li><Link className="hover:underline" href="/product">ProductPage</Link></li>
           <li><Link className="hover:underline" href="/checkout">Checkout</Link></li>
-          <li><Link className="hover:underline" href="/admin">AdminLogin</Link></li>
+          <li><Link className="hover:underline text-gray-400" href="/admin">AdminLogin</Link></li>
           <li><Link className="hover:underline" href="/admin/product">AdminProductPage</Link></li>
         </ul>
       </main>
