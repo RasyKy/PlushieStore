@@ -1,5 +1,6 @@
 import InputBox from "@/components/inputbox";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function CheckoutPage() {
   return (
@@ -64,7 +65,7 @@ export default function CheckoutPage() {
         <div className="w-1/2 p-6 pl-20 pr-20 flex flex-col">
           <div className="flex justify-between">
             <div className="flex">
-              <img src="https://via.placeholder.com/150" className="mr-5" />
+              <Image src="https://via.placeholder.com/150" className="mr-5" alt="Product Image"/>
               <p>Octupus</p>
             </div>
 

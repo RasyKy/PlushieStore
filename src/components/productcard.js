@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Heart, ShoppingCart } from "lucide-react";
+import Image from "next/image";
 
 export default function ProductCard({ product, onAddToCart }) {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -41,7 +42,7 @@ export default function ProductCard({ product, onAddToCart }) {
 
       {/* Product Image */}
       <div className="relative w-full h-48 mb-8 mt-6">
-        <img
+        <Image
           src={
             product.image_url ||
             "https://via.placeholder.com/300x200?text=No+Image"
