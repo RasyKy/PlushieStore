@@ -1,9 +1,14 @@
 "use client";
 import { useState } from "react";
-import { Heart } from "lucide-react";
+import { Heart, ShoppingCart } from "lucide-react";
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, onAddToCart }) {
   const [isFavorite, setIsFavorite] = useState(false);
+
+  const handleAddToCart = () => {
+    onAddToCart(product)
+  }
+
 
   const discountedPrice =
     product.discount_percent > 0
@@ -68,7 +73,7 @@ export default function ProductCard({ product }) {
       </div>
 
       {/* Add to Cart Button */}
-      <button className="w-full mt-4 bg-black text-white py-2 px-4 rounded hover:bg-gray-800 transition-colors">
+      <button className="w-full mt-4 bg-black text-white py-2 px-4 rounded hover:bg-gray-800 transition-colors" onClick={handleAddToCart}>
         Add to Cart
       </button>
     </div>
