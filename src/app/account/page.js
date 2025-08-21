@@ -2,7 +2,6 @@ import NavigationBar from "@/components/navigationbar"
 import SidebarButton from "@/components/sidebar-nav-button"
 import InputBox from "@/components/inputbox"
 import { CircleUserRound, SquarePen, CreditCard, MapPin, Mail } from "lucide-react"
-import Image from "next/image";
 
 export default function AccountPage() {
   return (
@@ -80,7 +79,7 @@ export default function AccountPage() {
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                    <Image src="/Visa.svg" className="w-8 h-auto" alt="Visa" />
+                    <img src="/Visa.svg" className="w-8 h-auto" alt="Visa" />
                     <span className="text-sm text-gray-600">Visa ending in ****</span>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

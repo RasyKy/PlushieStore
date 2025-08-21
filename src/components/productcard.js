@@ -1,30 +1,25 @@
 "use client";
 import { useState } from "react";
 import { Heart, ShoppingCart } from "lucide-react";
-import Image from "next/image";
 
 export default function ProductCard({ product, onAddToCart }) {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const handleAddToCart = () => {
-    onAddToCart(product)
-  }
-
+    onAddToCart(product);
+  };
 
   const discountedPrice =
     product.discount_percent > 0
       ? product.price * (1 - product.discount_percent / 100)
       : product.price;
 
-
   const handleFavoriteToggle = () => {
     setIsFavorite(!isFavorite);
   };
 
-
   return (
     <div className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow relative">
-
       {/* Favorite Button */}
       <button
         onClick={handleFavoriteToggle}
@@ -42,7 +37,7 @@ export default function ProductCard({ product, onAddToCart }) {
 
       {/* Product Image */}
       <div className="relative w-full h-48 mb-8 mt-6">
-        <Image
+        <img
           src={
             product.image_url ||
             "https://via.placeholder.com/300x200?text=No+Image"
@@ -74,7 +69,10 @@ export default function ProductCard({ product, onAddToCart }) {
       </div>
 
       {/* Add to Cart Button */}
-      <button className="w-full mt-4 bg-black text-white py-2 px-4 rounded hover:bg-gray-800 transition-colors" onClick={handleAddToCart}>
+      <button
+        className="w-full mt-4 bg-black text-white py-2 px-4 rounded hover:bg-gray-800 transition-colors"
+        onClick={handleAddToCart}
+      >
         Add to Cart
       </button>
     </div>

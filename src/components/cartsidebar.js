@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image";
 
 export default function CartSidebar({ isOpen, onClose, cartItems = [], setCartItems  }) {
 
@@ -42,7 +41,7 @@ export default function CartSidebar({ isOpen, onClose, cartItems = [], setCartIt
             cartItems.map((item) => (
               <div key={item.id} className="flex items-center gap-3 pb-4 border-b border-gray-100">
                 {/* Product Image */}
-                <Image
+                <img
                   src={item.image_url || `/placeholder.svg?height=64&width=64&query=${item.name}`}
                   alt={item.name}
                   className="w-16 h-16 rounded-lg object-cover flex-shrink-0"

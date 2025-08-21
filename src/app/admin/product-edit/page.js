@@ -4,7 +4,6 @@ import SearchBar from "@/components/searchbar";
 import InputBox from "@/components/inputbox";
 import { Heart } from "lucide-react";
 import { useState } from "react";
-import Image from "next/image";
 
 export default function ProductEdit() {
   const [status, setStatus] = useState(false);
@@ -48,7 +47,7 @@ export default function ProductEdit() {
             </button>
 
             <div className="relative w-full h-48 mb-8 mt-6">
-              <Image src="https://via.placeholder.com/150" className="w-full h-full object-cover rounded" alt="Product Item"/>
+              <img src="https://via.placeholder.com/150" className="w-full h-full object-cover rounded" alt="Product Item"/>
             </div>
 
             <h3 className="text-lg font-semibold mb-2 line-clamp-2">Octopus</h3>
