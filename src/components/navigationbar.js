@@ -11,7 +11,7 @@ export default function NavigationBar({ onCartClick }) {
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
-            <Link href="/product" className="group">
+            <Link href="/" className="group">
               <div className="flex items-center space-x-1">
                 <div className="text-2xl font-bold transition-colors duration-200 group-hover:scale-105 transform">
                   <span className="text-pink-600">Plushie</span>

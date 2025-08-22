@@ -3,7 +3,9 @@ import SearchBar from "@/components/searchbar";
 import ProductTable from "@/components/product-table";
 import Link from "next/link";
 
+
 export default function AdminProductPage() {
+
   return (
     <>
       <main className="flex gap-20 h-screen">
@@ -18,7 +20,11 @@ export default function AdminProductPage() {
           <h1 className="text-center">Product Management</h1>
 
           <p>Add Product</p>
-          <button className="p-3 w-30 bg-blue-600 text-white rounded-2xl mb-4 mt-2"><Link href="/admin/product-edit">Add</Link></button>
+          <Link href="/admin/product-edit">
+            <button className="p-3 w-30 bg-blue-600 text-white rounded-2xl mb-4 mt-2">
+              Add
+            </button>
+          </Link>
 
           <p className="mb-2">Product List</p>
           <ProductTable />

@@ -10,8 +10,6 @@ import Toast from "@/components/toast";
 
 export default function ProductPage() {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [cartOpen, setCartOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [cartItems, setCartItems] = useState([]);
@@ -23,7 +21,6 @@ export default function ProductPage() {
 
   async function fetchProducts() {
     try {
-      setLoading(true);
 
       const { data, error } = await supabase
         .from("products")
@@ -37,17 +34,49 @@ export default function ProductPage() {
     } catch (error) {
       console.error("Error fetching products:", error.message);
       console.error("Full error:", error);
-      setError("Failed to load products");
-    } finally {
-      setLoading(false);
     }
   }
 
-  const filteredProducts = products.filter(
-    (product) =>
-      product.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      product.description?.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+const handleSortChange = (sortType) => {
+  let sorted = [...products];
+
+  switch (sortType) {
+    case "price-asc":
+      sorted.sort((a, b) => {
+        const priceA =
+          a.discount_percent > 0
+            ? a.price * (1 - a.discount_percent / 100)
+            : a.price;
+        const priceB =
+          b.discount_percent > 0
+            ? b.price * (1 - b.discount_percent / 100)
+            : b.price;
+        return priceA - priceB;
+      });
+      break;
+    case "price-desc":
+      sorted.sort((a, b) => {
+        const priceA =
+          a.discount_percent > 0
+            ? a.price * (1 - a.discount_percent / 100)
+            : a.price;
+        const priceB =
+          b.discount_percent > 0
+            ? b.price * (1 - b.discount_percent / 100)
+            : b.price;
+        return priceB - priceA;
+      });
+      break;
+    case "name-asc":
+      sorted.sort((a, b) => a.name.localeCompare(b.name));
+      break;
+    case "name-desc":
+      sorted.sort((a, b) => b.name.localeCompare(a.name));
+      break;
+  }
+
+  setProducts(sorted);
+};
 
   const addToCart = (product) => {
     setCartItems((prevItems) => {
@@ -70,11 +99,9 @@ export default function ProductPage() {
 
     setToasts((prevToasts) => {
       const updatedToasts = [newToast, ...prevToasts];
-      // Keep only the 3 most recent toasts
       return updatedToasts.slice(0, 3);
     });
 
-    // Auto-remove toast after 3 seconds
     setTimeout(() => {
       setToasts((prevToasts) =>
         prevToasts.filter((toast) => toast.id !== newToast.id)
@@ -93,18 +120,14 @@ export default function ProductPage() {
       <main>
         <div className="grid grid-cols-4 gap-6 mr-8 ml-8 mt-8">
           <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
-          <SortBy />
+          <SortBy onSortChange={handleSortChange} />
         </div>
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mr-8 ml-8 mt-8">
-          {filteredProducts.length > 0 ? (
-            filteredProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onAddToCart={addToCart}
-              />
+          {products.length > 0 ? (
+            products.map(product => (
+              <ProductCard key={product.id} product={product} onAddToCart={addToCart}/>
             ))
           ) : (
             <div className="col-span-full text-center py-8">
