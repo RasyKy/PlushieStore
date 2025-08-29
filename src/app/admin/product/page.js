@@ -21,7 +21,7 @@ export default function AdminProductPage() {
 
           <p>Add Product</p>
           <Link href="/admin/product-edit">
-            <button className="p-3 w-30 bg-blue-600 text-white rounded-2xl mb-4 mt-2">
+            <button className="p-3 w-30 bg-blue-500 text-white rounded-2xl mb-4 mt-2 hover:bg-blue-700">
               Add
             </button>
           </Link>

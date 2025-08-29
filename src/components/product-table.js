@@ -5,29 +5,59 @@ import { supabase } from "@/lib/supabase";
 
 export default function ProductTable() {
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchProducts();
   }, []);
 
   async function fetchProducts() {
+    setIsLoading(true);
+    setError(null);
     try {
       const { data, error } = await supabase
         .from("products")
         .select("*")
         .order("id", { ascending: true });
 
-      if (error) throw error;
+      if (error) {
+        throw error;
+      }
 
       setProducts(data || []);
-    } catch {
-      console.error("Error fetching products:", error.message);
-      console.error("Full error:", error);
-      setError("Failed to load products");
+    } catch (err) {
+      console.error("Error fetching products:", err.message);
+      setError("Failed to load products. Please try again later.");
+    } finally {
+      setIsLoading(false);
     }
   }
 
-  console.log(products);
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center py-10">
+        <p className="text-gray-500">Loading products...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center py-10">
+        <p className="text-red-500">{error}</p>
+      </div>
+    );
+  }
+
+  if (!products.length) {
+    return (
+      <div className="flex justify-center items-center py-10">
+        <p className="text-gray-500">No products found.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="mr-20">
       <table>
@@ -53,8 +83,9 @@ export default function ProductTable() {
               <td>{p.status}</td>
               <td>
                 <Link
-                  href="/admin/product-edit"
-                  className="text-blue-600 font-bold underline"
+                  // Pass the product ID as a URL query parameter
+                  href={`/admin/product-edit?id=${p.id}`}
+                  className="text-blue-600 font-bold hover:underline"
                 >
                   edit
                 </Link>

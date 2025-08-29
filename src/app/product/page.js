@@ -17,6 +17,7 @@ export default function ProductPage() {
 
   useEffect(() => {
     fetchProducts();
+    
   }, []);
 
   async function fetchProducts() {
